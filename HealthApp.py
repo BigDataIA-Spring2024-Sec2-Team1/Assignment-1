@@ -3,6 +3,7 @@ from diagrams.custom import Custom
 from diagrams.generic.database import SQL
 from diagrams.onprem.queue import Kafka
 from diagrams.aws.compute import Lambda
+from diagrams.generic.device import Mobile
 
 with Diagram("ETL Data Pipeline", show=False):
 
@@ -12,5 +13,7 @@ with Diagram("ETL Data Pipeline", show=False):
         kafka = Kafka("Kafka")
         transform = Lambda("Transform")
         load = SQL("Load")
+        mobile = Mobile("App")
 
         gymequip >> micro_controller >> kafka >> transform >> load
+        mobile >> gymequip
